@@ -1,0 +1,2 @@
+class LevenshteinDistancesController < ApplicationController
+end
