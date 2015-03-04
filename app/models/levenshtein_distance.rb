@@ -27,6 +27,10 @@ class LevenshteinDistance < ActiveRecord::Base
     d[input_name_size][db_name_length]
   end
 
+  def similar_enough?(distance)
+    distance < 9
+  end
+
   def get_closest_match(input_name)
     matches={}
     @users.each {|user| matches[user.name]=levenshtein_distance(input_name, user.name)}
@@ -47,10 +51,6 @@ class LevenshteinDistance < ActiveRecord::Base
       end
     end
     id
-  end
-
-  def similar_enough?(distance)
-    distance < 9
   end
 
 end
