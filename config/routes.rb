@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'users#index'
+  get 'users/search' => 'users#search', as: :search
   resources :users
 
   resources :levenshtein_distances

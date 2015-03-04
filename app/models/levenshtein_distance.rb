@@ -26,4 +26,22 @@ class LevenshteinDistance < ActiveRecord::Base
     end
     d[input_name_size][db_name_length]
   end
+
+  def get_closest_match(input_name)
+    matches={}
+    @users.each {|user| matches[user.name]=levenshtein_distance(input_name, user.name)}
+
+    min_distance = matches.values.min
+    @closest_match = matches.select { |k, v| v == min_distance }.keys
+  end
+
+  def get_closest_match_id
+    id=[]
+    @closest_match.each do |user_name|
+      user_instance = @users.find_by name: user_name
+      id << user_instance.id
+    end
+    id
+  end
+
 end
