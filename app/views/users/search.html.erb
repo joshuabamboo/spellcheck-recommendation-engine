@@ -1,12 +1,14 @@
 <h1>You entered: <%= @user_name %></h1>
 
-<% if @match.size == 1 && @match[0].downcase == @user_name.downcase%>
+<% if @match.nil? %>
+  <h2>No record found for <%= @user_name %></h2>
+<% elsif @match.size == 1 && @match[0].downcase == @user_name.downcase%>
   <h2>This user's id is <%= @id[0] %></h2>
 <% else %>
 
   <h2>Here are the closest records matching your search:</h2>
   <% @match.each do |match| %>
-    <p><%= match%> <%= @id.shift %></p>
+    <p><%= match%> - ID: <%= @id.shift %></p>
   <% end %>
 
 <% end %>

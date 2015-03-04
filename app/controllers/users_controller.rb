@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def index
     
   end
-  
+
   def search
     @user_name = params[:name]
     ld = LevenshteinDistance.new
